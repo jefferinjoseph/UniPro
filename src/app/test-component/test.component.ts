@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './test.component.html'
 })
 export class TestComponent {
-  title = 'Test Component testing commits';
+  title = 'Test Component testing commits hello';
 }
