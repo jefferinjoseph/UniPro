@@ -27,7 +27,7 @@ export class LoginComponent {
 
     login() {
         this.loading = true;
-        this.authenticationService.login(this.model.username, this.model.password)
+        this.authenticationService.login2(this.model.username, this.model.password)
             .subscribe(
                 data => {
                     this.router.navigate([this.returnUrl]);
