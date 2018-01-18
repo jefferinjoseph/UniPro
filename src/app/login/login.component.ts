@@ -22,7 +22,7 @@ export class LoginComponent {
         this.authenticationService.logout();
 
         // get return url from route parameters or default to '/'
-        this.returnUrl = "test";
+        this.returnUrl = "dashboard";
     }
 
     login() {
