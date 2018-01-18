@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DashboardService } from "./dashboard.service";
 
 @Component({
     selector: 'dashboard-component',
     styleUrls: ["./dashboard.component.scss"],
     templateUrl: './dashboard.component.html'
 })
-export class DashboardComponent {
+
+export class DashboardComponent implements OnInit {
     title = 'Test Component testing commits hello again';
     vegetables = [
         { name: 'Carrot', type: 'vegetable', workItemID: 1 },
@@ -33,6 +35,16 @@ export class DashboardComponent {
     droppedItems = [];
     fruitDropEnabled = true;
     dragEnabled = true;
+    workItems: any = {};
+    constructor(private dashboardService: DashboardService) { }
+
+    ngOnInit() {
+        this.dashboardService.getWorkItems().subscribe(res => {
+            this.workItems = res;
+            console.log(res);
+        },
+        err => console.log(err));
+    }
 
     onDropItem(e: any) {
         var data = e.nativeEvent.currentTarget.getAttribute("data");
@@ -64,9 +76,9 @@ export class DashboardComponent {
         
        
     }
+
     removeItem(item: any, list) {
-    return list.filter(ele => ele.workItemID != item.workItemID);        
-        
+        return list.filter(ele => ele.workItemID != item.workItemID);
     }
 }
 

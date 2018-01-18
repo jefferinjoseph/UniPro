@@ -11,6 +11,7 @@ import { routing } from './main.routing';
 import { ServerURLInterceptor } from "./app.interceptor";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Ng2DragDropModule } from 'ng2-drag-drop';
+import { DashboardService } from "./dashboard/dashboard.service";
 export function interceptorFactory(xhrBackend: XHRBackend, requestOptions: RequestOptions){
   let service = new InterceptorService(xhrBackend, requestOptions);
   service.addInterceptor(new ServerURLInterceptor())
@@ -33,6 +34,7 @@ export function interceptorFactory(xhrBackend: XHRBackend, requestOptions: Reque
   ],
   providers: [
     AuthenticationService,
+    DashboardService,
     { provide: InterceptorService, useFactory: interceptorFactory, deps: [XHRBackend, RequestOptions] }
   ],
   bootstrap: [AppComponent]
