@@ -37,3 +37,22 @@ div.scroll-list {
         padding: 0.5rem;
       }
   }
+
+  .assignee {
+    margin-top: 1rem;
+    font-size: 12px;
+    color: grey;
+  }
+
+  .list-group-item-success {
+    color: #090909;
+    background-color: #dff0d8;
+}
+
+.points {
+  float: right;
+  margin-top: -19px;
+  border: solid 1px;
+  width: 15px;
+  text-align: center;
+}

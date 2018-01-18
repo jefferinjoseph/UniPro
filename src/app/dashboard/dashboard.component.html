@@ -1,35 +1,47 @@
 <div class="col-xs-12 text-center"><h3>Dashboard</h3></div>
 <div class='container'>
     <div class="dashboard-column">
-        <div class="card card-outline-primary mb-3" data="fruits" droppable [dragOverClass]="'drag-target-border-green'" [dropScope]="['vegetable', 'fruits', 'name']"
+        <div class="card card-outline-primary mb-3" data="rodWorkItems" droppable [dragOverClass]="'drag-target-border-green'" [dropScope]="['Ready for Development', 'Development', 'Ready for Approval']"
             [dragHintClass]="'drag-hint'" (onDrop)="onDropItem($event)">
-            <div class="card-header card-inverse card-primary">Drop Fruits here</div>
-            <li class="list-group-item list-group-item-action list-group-item-success" [draggable] *ngFor="let item of fruits" [dragClass]="'active'"
+            <div class="card-header card-inverse card-primary">READY FOR DEVELOPMENT</div>
+            <li class="list-group-item list-group-item-action list-group-item-success" [draggable] *ngFor="let item of rodWorkItems" [dragClass]="'active'"
                 [dragData]="item" [dragScope]="item.type" [dragEnabled]="dragEnabled" (onDrop)="onDropItem($event)">
-                {{item.name}}
+               {{item.id}} : {{item.title}}
+               <div class='assignee'>
+                    {{item.assignee}}
+               </div>
+               <div class="points">{{item.points}}</div>
             </li>
         </div>
     </div>
 
     <div class="dashboard-column">
-        <div class="card card-outline-primary mb-3" data="vegetables" droppable [dragOverClass]="'drag-target-border-green'" [dropScope]="['vegetable', 'fruits', 'name']"
+        <div class="card card-outline-primary mb-3" data="developmentWorkItems" droppable [dragOverClass]="'drag-target-border-green'" [dropScope]="['Ready for Development', 'Development', 'Ready for Approval']"
             [dragHintClass]="'drag-hint'" (onDrop)="onDropItem($event)">
-            <div class="card-header card-inverse card-primary">Drop Vegetables here</div>
-            <li class="list-group-item list-group-item-action list-group-item-success" [draggable] *ngFor="let item of vegetables" [dragClass]="'active'"
+            <div class="card-header card-inverse card-primary">DEVELOPMENT</div>
+            <li class="list-group-item list-group-item-action list-group-item-success" [draggable] *ngFor="let item of developmentWorkItems" [dragClass]="'active'"
                 [dragData]="item" [dragScope]="item.type" [dragEnabled]="dragEnabled" (onDrop)="onDropItem($event)">
-                {{item.name}}
+                {{item.id}} : {{item.title}}
+                <div class='assignee'>
+                    {{item.assignee}}
+                </div>
+                <div class="points">{{item.points}}</div>
             </li>
         </div>
     </div>
 
     <div class="dashboard-column">
-        <div class="card card-outline-primary mb-3" data="names" droppable [dragOverClass]="'drag-target-border-green'" [dropScope]="['vegetable', 'fruits', 'name']"
+        <div class="card card-outline-primary mb-3" data="roaWorkItems" droppable [dragOverClass]="'drag-target-border-green'" [dropScope]="['Ready for Development', 'Development', 'Ready for Approval']"
             [dragHintClass]="'drag-hint'" (onDrop)="onDropItem($event)">
-            <div class="card-header card-inverse card-primary">Drop Name here</div>
+            <div class="card-header card-inverse card-primary">READY FOR APPROVAL</div>
             <div class="card-block scroll-list">
-                <li class="list-group-item list-group-item-action list-group-item-success" [draggable] *ngFor="let item of names" [dragClass]="'active'"
+                <li class="list-group-item list-group-item-action list-group-item-success" [draggable] *ngFor="let item of roaWorkItems" [dragClass]="'active'"
                     [dragData]="item" [dragScope]="item.type" [dragEnabled]="dragEnabled" (onDrop)="onDropItem($event)">
-                    {{item.name}}
+                    {{item.id}} : {{item.title}}
+                    <div class='assignee'>
+                        {{item.assignee}}
+                    </div>
+                    <div class="points">{{item.points}}</div>
                 </li>
             </div>
         </div>

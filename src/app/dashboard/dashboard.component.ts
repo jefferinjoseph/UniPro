@@ -8,28 +8,9 @@ import { DashboardService } from "./dashboard.service";
 })
 
 export class DashboardComponent implements OnInit {
-    title = 'Test Component testing commits hello again';
-    vegetables = [
-        { name: 'Carrot', type: 'vegetable', workItemID: 1 },
-        { name: 'Onion', type: 'vegetable', workItemID: 2 },
-        { name: 'Potato', type: 'vegetable', workItemID: 3 },
-        { name: 'Capsicum', type: 'vegetable', workItemID: 4 }
-    ];
-    fruits = [
-        { name: 'Apple', type: 'fruits', workItemID: 5 },
-        { name: 'Orange', type: 'fruits', workItemID: 6 },
-        { name: 'Grapes', type: 'fruits', workItemID: 7 },
-        { name: 'Pineapple', type: 'fruits', workItemID: 8 }
-    ];
-    names = [
-        {name: "Aswin", type: "name", workItemID: 9},
-        {name: "Jefferin", type: "name", workItemID: 10},
-        {name: "Taffy", type: "name", workItemID: 11},
-        {name: "Deepak", type: "name", workItemID: 12},
-        {name: "Shoby", type: "name", workItemID: 13},
-        {name: "Venki", type: "name", workItemID: 14},
-        {name: "Saleem", type: "name", workItemID: 15}
-    ]
+    developmentWorkItems = []; // vegetables
+    rodWorkItems = []; // fruits
+    roaWorkItems = []; // names
     droppedFruits = [];
     droppedVegetables = [];
     droppedItems = [];
@@ -40,45 +21,56 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit() {
         this.dashboardService.getWorkItems().subscribe(res => {
-            this.workItems = res;
             console.log(res);
+            res.value.map(it => {
+                it.type = it.fields["System.BoardColumn"];
+                it.title = it.fields['System.Title'];
+                it.assignee = it.fields['System.AssignedTo'];
+                it.points = it.fields['Microsoft.VSTS.Scheduling.StoryPoints'];
+            });
+            this.workItems = res.value;
+            this.rodWorkItems = this.workItems.filter(wi => wi.type == "Ready for Development");
+            this.developmentWorkItems = this.workItems.filter(wi => wi.type == "Development");
+            this.roaWorkItems = this.workItems.filter(wi => wi.type == "Ready for Approval");
         },
-        err => console.log(err));
+            err => {
+                console.log(err);
+            });
     }
 
     onDropItem(e: any) {
         var data = e.nativeEvent.currentTarget.getAttribute("data");
         var sourceType = e.dragData.type;
-        if (data == "fruits"){
-            e.dragData.type = "fruits";
-            this.fruits.push(e.dragData);
+        if (data == "rodWorkItems") {
+            e.dragData.type = "Ready for Development";
+            this.rodWorkItems.push(e.dragData);
         }
-        else if (data == "vegetables"){
-            e.dragData.type = "vegetable";
-            this.vegetables.push(e.dragData);
+        else if (data == "developmentWorkItems") {
+            e.dragData.type = "Development";
+            this.developmentWorkItems.push(e.dragData);
         }
-        else if (data == "names"){
-            e.dragData.type = "name";
-            this.names.push(e.dragData);
+        else if (data == "roaWorkItems") {
+            e.dragData.type = "Ready for Approval";
+            this.roaWorkItems.push(e.dragData);
         }
 
         switch (sourceType) {
-            case "fruits": 
-                this.fruits = this.removeItem(e.dragData, this.fruits);
+            case "Ready for Development":
+                this.rodWorkItems = this.removeItem(e.dragData, this.rodWorkItems);
                 break;
-            case "vegetable":
-                this.vegetables = this.removeItem(e.dragData, this.vegetables);
+            case "Development":
+                this.developmentWorkItems = this.removeItem(e.dragData, this.developmentWorkItems);
                 break;
-            case "name": 
-                this.names = this.removeItem(e.dragData, this.names);
+            case "Ready for Approval":
+                this.roaWorkItems = this.removeItem(e.dragData, this.roaWorkItems);
                 break;
         }
-        
-       
+
+
     }
 
     removeItem(item: any, list) {
-        return list.filter(ele => ele.workItemID != item.workItemID);
+        return list.filter(ele => ele.id != item.id);
     }
 }
 

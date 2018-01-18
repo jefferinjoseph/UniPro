@@ -7,9 +7,27 @@ import { InterceptorService } from 'ng2-interceptors';
 @Injectable()
 export class DashboardService { 
 
-    constructor(private http: Http, private interceptor: InterceptorService) { }
+    constructor(private http: InterceptorService) { }
 
     getWorkItems() {
-        return this.http.get('http://localhost:81/MockAPI/values').map(res => res.json());
+        return this.req("GET", "http://localhost:12345/values").map(res => res.json());
+
     }
+
+    req = function(method, url, body?, headers?) {
+        if (!headers) {
+          headers = new Headers();
+          headers.append('Accept', 'application/json')
+          headers.append('Content-Type', 'application/json')
+          headers.append('Access-Control-Allow-Origin', "*")
+        }
+    
+        var options = new RequestOptions({
+          method: method,
+          body: body,
+          headers: headers
+        })
+    
+        return this.http.request(url, options)
+      }
 }
