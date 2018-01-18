@@ -6,6 +6,9 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { TestComponent } from './test-component/test.component';
 import { LoginComponent } from "./login/login.component";
+import { DashboardComponent } from './dashboard/dashboard.component';
+
+import { Ng2DragDropModule } from 'ng2-drag-drop';
 
 import { routing } from './main.routing';
 
@@ -14,12 +17,14 @@ import { routing } from './main.routing';
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    Ng2DragDropModule.forRoot()
   ],
   declarations: [
     AppComponent,
     TestComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
