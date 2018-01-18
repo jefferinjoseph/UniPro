@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { TestComponent } from './test-component/test.component';
+import { LoginComponent } from "./login/login.component";
 
 import { routing } from './main.routing';
 
@@ -17,7 +18,8 @@ import { routing } from './main.routing';
   ],
   declarations: [
     AppComponent,
-    TestComponent
+    TestComponent,
+    LoginComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
