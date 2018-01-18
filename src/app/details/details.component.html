@@ -1,0 +1,7 @@
+<div class='container'>
+    <span (click) = "goBack();" class='back-btn'>Back</span>
+    <h3>User Story Details</h3>
+    <div [innerHTML] = "details.description  | safeHtml"></div>
+    <h2>Acceptance Criteria</h2>
+    <div [innerHTML] = "details.acceptanceCriteria  | safeHtml"></div>
+</div>

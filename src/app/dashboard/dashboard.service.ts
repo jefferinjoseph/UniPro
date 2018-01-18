@@ -9,6 +9,8 @@ export class DashboardService {
 
     constructor(private http: InterceptorService) { }
 
+    selectedItem: any = null;
+
     getWorkItems() {
         return this.req("GET", "http://localhost:12345/values").map(res => res.json());
 

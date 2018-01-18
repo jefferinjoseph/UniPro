@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from "./dashboard.service";
+import { Router } from '@angular/router'
 
 @Component({
     selector: 'dashboard-component',
@@ -17,7 +18,11 @@ export class DashboardComponent implements OnInit {
     fruitDropEnabled = true;
     dragEnabled = true;
     workItems: any = {};
-    constructor(private dashboardService: DashboardService) { }
+    constructor(
+        private dashboardService: DashboardService,
+        private router: Router
+    ) 
+        { }
 
     ngOnInit() {
         this.dashboardService.getWorkItems().subscribe(res => {
@@ -27,6 +32,8 @@ export class DashboardComponent implements OnInit {
                 it.title = it.fields['System.Title'];
                 it.assignee = it.fields['System.AssignedTo'];
                 it.points = it.fields['Microsoft.VSTS.Scheduling.StoryPoints'];
+                it.description = it.fields['System.Description'];
+                it.acceptanceCriteria = it.fields['Microsoft.VSTS.Common.AcceptanceCriteria'];
             });
             this.workItems = res.value;
             this.rodWorkItems = this.workItems.filter(wi => wi.type == "Ready for Development");
@@ -71,6 +78,11 @@ export class DashboardComponent implements OnInit {
 
     removeItem(item: any, list) {
         return list.filter(ele => ele.id != item.id);
+    }
+
+    titleClicked(item) {
+        this.dashboardService.selectedItem = item;
+        this.router.navigateByUrl("/details");
     }
 }
 

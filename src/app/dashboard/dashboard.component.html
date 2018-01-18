@@ -6,11 +6,11 @@
             <div class="card-header card-inverse card-primary">READY FOR DEVELOPMENT</div>
             <li class="list-group-item list-group-item-action list-group-item-success" [draggable] *ngFor="let item of rodWorkItems" [dragClass]="'active'"
                 [dragData]="item" [dragScope]="item.type" [dragEnabled]="dragEnabled" (onDrop)="onDropItem($event)">
-               {{item.id}} : {{item.title}}
+              <span class='title-id' (click)= "titleClicked(item);">{{item.id}} : {{item.title}}</span> 
                <div class='assignee'>
                     {{item.assignee}}
                </div>
-               <div class="points">{{item.points}}</div>
+               <div class="points" *ngIf="item.points">{{item.points}}</div>
             </li>
         </div>
     </div>
@@ -21,11 +21,11 @@
             <div class="card-header card-inverse card-primary">DEVELOPMENT</div>
             <li class="list-group-item list-group-item-action list-group-item-success" [draggable] *ngFor="let item of developmentWorkItems" [dragClass]="'active'"
                 [dragData]="item" [dragScope]="item.type" [dragEnabled]="dragEnabled" (onDrop)="onDropItem($event)">
-                {{item.id}} : {{item.title}}
+                <span class='title-id' (click)= "titleClicked(item);">{{item.id}} : {{item.title}}</span> 
                 <div class='assignee'>
                     {{item.assignee}}
                 </div>
-                <div class="points">{{item.points}}</div>
+                <div class="points" *ngIf="item.points">{{item.points}}</div>
             </li>
         </div>
     </div>
@@ -37,11 +37,11 @@
             <div class="card-block scroll-list">
                 <li class="list-group-item list-group-item-action list-group-item-success" [draggable] *ngFor="let item of roaWorkItems" [dragClass]="'active'"
                     [dragData]="item" [dragScope]="item.type" [dragEnabled]="dragEnabled" (onDrop)="onDropItem($event)">
-                    {{item.id}} : {{item.title}}
+                    <span class='title-id' (click)= "titleClicked(item);">{{item.id}} : {{item.title}}</span> 
                     <div class='assignee'>
                         {{item.assignee}}
                     </div>
-                    <div class="points">{{item.points}}</div>
+                    <div class="points" *ngIf="item.points">{{item.points}}</div>
                 </li>
             </div>
         </div>

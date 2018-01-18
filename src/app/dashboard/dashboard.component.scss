@@ -56,3 +56,10 @@ div.scroll-list {
   width: 15px;
   text-align: center;
 }
+
+.title-id {
+  &:hover {
+    cursor: pointer;
+    color: #398bdd;
+  }
+}
