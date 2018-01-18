@@ -1,0 +1,449 @@
+$dh-red: #E61B24;
+$dh-blue: #1A8CD3;
+
+$dh-light-grey: #f8f8f8;
+$dh-med-grey: #ccc;
+$dh-dark-grey: #666;
+
+$dh-light-purple: #747c8e;
+$dh-dark-purple: #282B32;
+
+$dh-dark-blue: #373A44;
+$dh-light-blue: #0074C1;
+$dh-light-hover-blue: #F2F6FF;
+
+$dh-green: #68bd45 !global;
+
+$white: #fff;
+$black: #000;
+
+$light-yellow: #FFFFCC;
+$brown: #5D4037;
+
+// Login Colors
+$dh-login-med-purple: #373B44;
+$dh-login-dark-purple: #282B32;
+$dh-login-light-purple: #949FB6;
+$dh-login-light-blue: #34AEFF;
+$dh-error-yellow: #FFF799;
+$dh-dark-red: #c1151d;
+$dh-light-red: #fd1a24;
+
+// Reuired *
+$dh-required: red;
+
+.login-header {
+  background: white;
+  border-bottom: none;
+  height: 70px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  box-shadow: none;
+}
+
+.finastra-logo {
+  flex: 0 0 auto;
+}
+
+.required {
+  color: $dh-required;
+}
+
+.header-menu {
+  flex: 0 0 auto;
+  display: flex;
+
+  a {
+    flex: 0 0 auto;
+    margin-left: 1rem;
+    font-size: 14;
+    color: $dh-red;
+    text-decoration: underline;
+  }
+
+  img.dh-logo {
+    width: 70%;
+    height: 70%;
+  }
+}
+
+
+// -------------------------------------------------------------------
+// Login Body Styles
+// -------------------------------------------------------------------
+
+.login-body {
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  padding-top: 80px;
+
+
+  a {
+    color: #525252;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+}
+
+.login-header, .login-body {
+  h1, h2, h3, h4, h5 {
+    font-family: 'Open Sans', sans-serif;
+  }
+}
+.login-wrap {
+  background: url('../../assets/images/login-bg.png') #ffffff no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+// -------------------------------------------------------------------
+// The Red Welcome to Barometer panel
+// -------------------------------------------------------------------
+
+.login-body__welcome-panel {
+
+  flex: 1 1 50%;
+  background: $dh-red;
+  color: white;
+  padding-top: 3rem;
+  font-size: 12px;
+  position: relative;
+
+  h1 {
+    font-size: 48px;
+    font-weight: 300;
+    width: 50%;
+    margin-left: 30%;
+    margin-top: 3rem;
+  }
+
+}
+
+
+// -------------------------------------------------------------------
+// The Grey/Purple Login Panel
+// -------------------------------------------------------------------
+
+.login-body__login-panel {
+
+  flex: 0 0 750px;
+  background: #fff;
+  color: $dh-login-light-purple;
+  padding: 70px 0;
+  font-size: 12px;
+  border-radius: 6px;
+  box-shadow: 0px 2px 10px 0px #525252;
+  position: relative;
+  h2 {
+    font-size: 24px;
+    font-weight: 500;
+    color: $dh-login-dark-purple;
+    padding: 120px 0 0px 210px;
+    margin: 0;
+  }
+
+}
+.finastra-logo {
+    position: absolute;
+    left: 190px;
+    top: 70px;
+    padding: 15px;
+    img {
+        height: 64px;
+    }
+}
+
+// -------------------------------------------------------------------
+// Login Form Styles
+// -------------------------------------------------------------------
+
+.login-form {
+
+  .field, .action, .errors {
+    padding: 1.25rem 170px 0.75rem;
+  }
+
+  .field {
+    display: flex;
+    align-items: flex-start;
+    color: $dh-login-light-purple;
+
+    .field-icon {
+      flex: 0 0 auto;
+      margin-right: 1rem;
+      margin-top: 23px;
+    }
+
+    md-input-container {
+      flex: 1;
+      margin-bottom: 0;
+    }
+
+    .show-password {
+      flex: 0 0 auto;
+      margin-top: 18px;
+      padding: 0 16px;
+      min-width: auto;
+
+      md-icon {
+        color: $dh-login-light-purple;
+      }
+
+      &:hover {
+        md-icon {
+          color: $dh-blue;
+        }
+      }
+    }
+
+    label {
+      color: $dh-login-light-purple;
+      font-family: 'Montserrat', 'Open Sans', sans-serif;
+    }
+
+    .md-input-focused label, .md-input-has-value label{
+      color: $dh-login-light-purple;
+    }
+
+    input {
+      color: $dh-login-light-purple;
+      border-color: $dh-login-light-purple;
+      font-size: 14px;
+      border: none;
+      font-family: 'Montserrat', 'Open Sans', sans-serif;
+    }
+
+    .md-input-focused .md-input, .md-input-has-value .md-input  {
+      color: $dh-login-light-purple;
+      border-color: $dh-login-light-purple;
+    }
+
+    .md-input-invalid input.md-input {
+      color: $dh-login-light-purple;
+    }
+
+  }
+
+  .field.accept-terms {
+    background: none;
+    border-bottom: none;
+    color: $dh-login-dark-purple;
+    font-family: 'Montserrat', 'Open Sans', sans-serif;
+
+  }
+    
+  .errors {
+    background: $dh-error-yellow;
+    display: flex;
+
+    .material-icons {
+      color: $dh-red;
+      margin-right:1rem;
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+      line-height: 24px;
+      color: black;
+      font-weight: 600;
+    }
+  }
+
+  .action {
+    display: flex;
+    #signup {
+      margin-right: 20px;
+    }
+  }
+}
+
+.submitted-message {
+    padding: 2rem 210px;
+    color: $dh-login-light-purple;
+    font-size: 14px;
+}
+
+// -------------------------------------------------------------------
+// Styles for the T&C Checkbox
+// -------------------------------------------------------------------
+:host /deep/ md-checkbox.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+      background-color: #19285D;
+    }
+
+// -------------------------------------------------------------------
+// Styles for the Login Button
+// -------------------------------------------------------------------
+
+.button.login-form__submit {
+  background: #19285D !important;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.30);
+  color: $white;
+  font-family: 'Montserrat', 'Open Sans', sans-serif;
+  font-size: .75rem;
+  font-weight: 600;
+  padding: 0.5rem 2rem;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.button.login-form__submit:hover {
+  cursor: pointer;
+  background: #694ED6 !important;
+}
+.button.login-form__submit:active {
+  cursor: pointer;
+  background: #A290DA !important;
+}
+
+a.login-form__forgot-password {
+  margin-left: 2rem;
+  color: white;
+  font-weight: 600;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.return-to-login {
+  padding: 1.25rem 210px 0.75rem;
+  a {
+    background: #19285D;
+    border-radius: 5px;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 0.8rem 2rem;
+    position: relative;
+    font-size: .75rem;
+    font-weight: 600;
+    text-decoration: none;
+    font-family: 'Montserrat', 'Open Sans', sans-serif;
+    min-height: 40px;
+    height: 40px;
+  }
+}
+
+
+// -------------------------------------------------------------------
+// Login Footer Styles
+// -------------------------------------------------------------------
+
+.login-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  padding-bottom: 3px;
+  color: $dh-login-light-purple;
+  border-top: 0;
+
+  .legal, .support,  .copyright, .dh-logo {
+    flex: 0 0 auto;
+    font-size: 12px;
+    padding-right: 1rem;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .legal {
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    li {
+      flex: 0 0 auto;
+      margin-right: 1rem;
+      padding-right: 1rem;
+      border-right: solid 1px $dh-login-light-purple;
+    }
+
+    li:last-child {
+      margin-right: 0;
+      padding-right: 0;
+      border-right: none;
+    }
+  }
+
+  .copyright {
+    color: $dh-login-dark-purple;
+  }
+
+  .language {
+    color: $dh-login-dark-purple;
+    flex: 1;
+    text-align: right;
+    margin: 10px 0;
+    font-size: 12px;
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    padding: 0 7px;
+  }
+
+  a {
+    color: $dh-login-dark-purple;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+
+//------- Spinner styles -----
+.overlay {
+  background: rgba(255, 255, 255, 0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9998;
+}
+
+.overlay.search-loading:after {
+  color: black;
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 48%;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  background-color: $dh-red;
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0% { -webkit-transform: perspective(120px); }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg); }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg); }
+}
+
+@keyframes sk-rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  } 50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+  } 100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
