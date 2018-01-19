@@ -1,41 +1,42 @@
-<div class="col-xs-12 text-center"><h3>Dashboard</h3></div>
-<div class='container'>
-    <div class="dashboard-column">
-        <div class="card card-outline-primary mb-3" data="rodWorkItems" droppable [dragOverClass]="'drag-target-border-green'" [dropScope]="['Ready for Development', 'Development', 'Ready for Approval']"
-            [dragHintClass]="'drag-hint'" (onDrop)="onDropItem($event)">
-            <div class="card-header card-inverse card-primary">READY FOR DEVELOPMENT</div>
-            <li class="list-group-item list-group-item-action list-group-item-success" [draggable] *ngFor="let item of rodWorkItems" [dragClass]="'active'"
-                [dragData]="item" [dragScope]="item.type" [dragEnabled]="dragEnabled" (onDrop)="onDropItem($event)">
-              <span class='title-id' (click)= "titleClicked(item);">{{item.id}} : {{item.title}}</span> 
-               <div class='assignee'>
-                    {{item.assignee}}
-               </div>
-               <div class="points" *ngIf="item.points">{{item.points}}</div>
-            </li>
-        </div>
-    </div>
 
-    <div class="dashboard-column">
-        <div class="card card-outline-primary mb-3" data="developmentWorkItems" droppable [dragOverClass]="'drag-target-border-green'" [dropScope]="['Ready for Development', 'Development', 'Ready for Approval']"
-            [dragHintClass]="'drag-hint'" (onDrop)="onDropItem($event)">
-            <div class="card-header card-inverse card-primary">DEVELOPMENT</div>
-            <li class="list-group-item list-group-item-action list-group-item-success" [draggable] *ngFor="let item of developmentWorkItems" [dragClass]="'active'"
-                [dragData]="item" [dragScope]="item.type" [dragEnabled]="dragEnabled" (onDrop)="onDropItem($event)">
-                <span class='title-id' (click)= "titleClicked(item);">{{item.id}} : {{item.title}}</span> 
-                <div class='assignee'>
-                    {{item.assignee}}
-                </div>
-                <div class="points" *ngIf="item.points">{{item.points}}</div>
-            </li>
-        </div>
+<div class="dashboardHeader">
+    <ul>
+        <li><a><img src="./assets/images/home.png" width="40px"  /></a></li>
+        <li class="topLinks"><a>Dashboard</a></li>
+        <li class="topLinks"><a>Code</a></li>
+    </ul>
+    
+    <div class="profile">
+        <span class="search">
+            <input type="text" class="form-control" name="search" />
+            <img style="float:right;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAABXElEQVQ4jZ3TPUscURTG8d+ZwrAByzQ2W0TSWdnGFLE2foh8hVWQBBmCsBC3Sfp8CLvAYmNvJTYBi221CSRk0YW5KfbO3l1dkeSpZs48539e7p0wr/20qqMn7EpegnAlOTE28Dl+uaeYPR2mbZVvku59U3aONN77FKfz4WoueZiTz4QdE2sm1oQdnEm6KkN1ervI3U+rnruQdIW+2gciLVSvU4UjyYEw8sdGO06lozerzMcHyVBHM/2WO+nolRHCbu7lOBuXq45GMshv7wqg3fad80eTi7v1rJfQ/yiMCyBcgRWbTyY22ZNcFkBykoN7edvLVadKZS93MCyAsYEwwhscLYWUY9zCtd++lGmYv0hhelSD2cIam0IvF4Af7rzWj5sCKJDHrzLX+IlXwoVb2/pxEwuW9meanvO6MJZc5pm/utXxzKlko4XEw0JP6CC9mIOc/zughaz4Lkz+Aob9eT6oolcCAAAAAElFTkSuQmCC"/>
+        </span>
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAFaUlEQVRYR51Wa1BVVRT+9t6Xy0PB8t04WiI+UNA0RtOc0ZiyTF4ygy8eGpbjq5Sn4mswNWgYwMz4YeIjwZqhFEwzSWeYLBNtVCStxldjPgBRBO0Cl3v2as5R7lzknnsunT/nx/7WWt9e33psBje/6bEf+Jm5ZxhBhjKFj5GC/EnCVzVnQBMndoOErOLETrSS9cjR4s+a3HHNjEARcenDGVNWQ8o54NzLCK+eS6BZAF/ZFJ59eH/OFVc2ugTCF2X6CMvjTQqjFRwQ7gTujJE2MLHV3KxsKCnJb3bmwymBmQnJwyTRQYCP/H+BO1pJhmomZfShovyrz/rrRCA8Lm0cZ/IYgN7OgnPOETo5BG9MGQ//FwdACI5bd+pwsvICDpf/jJaWVqecidg9bmLTSvfkXHAEdCDw5ObsF73g3bt5Y83KRIwcPthpkJq6+9icW4hbd+t0SQDKJMdM2AlMi0/t5g3ljF7ahRDYsmYJRgx9yaUqDxoakbxhKx42PnKKU+XwapYT2mvCTiAqLjWXGCXreY8Oex0Js2a4VRInT59HbkGxPpaQU1aUm/60hQG11Ygpl/SqXb194afr8Jyf1vaGHxFhcWoWau890MFKGxECVSm0DETGp+wGsEDPc1DgEGzOWGIY2BGws6hUK0q9j0CFh/blvcdiYlb1sJqtNa6GzIw3X8P78TO7ROB4xWls3/WNvo0kC3ma+rPI+NR5AOkKZjIJZK9fjoDBA7tE4J/bNVi5Lg+KIvXtGM1hEfHJOxnYQj3UoAH9sS0rtUvB28FL07Nxp6behQxyB4ucl3oWgkL0UIIDu7dlws+ve5dIqO24cMUmkEsrWcnC41Puc6CnK9yUCcFIWja/SwTyPt+LnyqrXdqo05GFxaZYBYeHK6TS1oqPMpZg7Gj3VkPDwya8u3w9wF26hYS0ukVAJRc8fBA2rf3QrSzsLjqAsvJThliNQHhsSj3n6GWElooN65ITMf6V0S6hd2vqsCw9C9KNDa5JYFSEjtF8zBz5H6ejX1+ni1LbhGnrc3CzpgGMGb511KdLpWEbdrwuYcjAvsjdssppFjKztuPc71fBhckoodo5Qe5gUXEpc4lhv1sWAKJnTEXC7DCn8F3FpTh0TH/8PmvEiM1m6mPTxM01HPA2IqFOw80Zi+Hl5ekUamluwdotBbhx846RK0CSxWxt6acJFRWfUkhAop5VNx9vvB06EbOi3oCn2ezSuVoHX5f+iPKK07BYWlxg6YuyfXmLNAJh89KGCmG7DHC7eD38umNiSDDGjxuF4JEB8DC5p2t7xDabDRcvXcGZc5fx628X0fToXzsZRaLNZOKBpXtzrtlLNTIhNQdE9qEfNm0yFsZGulnN+hdV3wY7vjyIoyc6zIXssn25GaqVnYD6DOfNTZUAC1IPbG2tGDtqCFYunY9ePZ831tQJ4l79A2wt2IOqP/6GyeOJdARUNQnfVyv2ZGr6dGjWiLikAECcYoz6qIfq8GFkQ8T0qYiYHoo+vV2uDDuF+vsNKD1yHN/9UAFiHo5tWWtS5KRv9+dfbwd3mhZRC9JeljYqbyehplCxWaHug6DAAISMDcKIYf4Y8EI/bUMKLtDY9Ai379biz7+u4ez5alRfvgrh4QlhMjtKWMuJ3jpYlFflmCyn40rNBHF+gBOCHcFSKpA2K7S/ogD0dNkyDsa5RoabOtzYnnYPRUY73lw3A+0HMTFJ3lZPvhFMJjl2R1eKQa12wZHbKHw3tmveaRgZOdTqgrHVTGIuOPMxwmvnkizgKGZcfKK2misbdzaGZh+RmO7LbLZ3iCiUAWOIhD8xpYdWySQaGVOuqxXOSZzwaLV8X1JS8Ngdsv8ByVgW6ngBB/cAAAAASUVORK5CYII=" >
     </div>
-
-    <div class="dashboard-column">
-        <div class="card card-outline-primary mb-3" data="roaWorkItems" droppable [dragOverClass]="'drag-target-border-green'" [dropScope]="['Ready for Development', 'Development', 'Ready for Approval']"
-            [dragHintClass]="'drag-hint'" (onDrop)="onDropItem($event)">
-            <div class="card-header card-inverse card-primary">READY FOR APPROVAL</div>
-            <div class="card-block scroll-list">
-                <li class="list-group-item list-group-item-action list-group-item-success" [draggable] *ngFor="let item of roaWorkItems" [dragClass]="'active'"
+</div>
+<div class="loader" *ngIf="loading"></div>
+<div *ngIf="!loading" class='container' style="border:solid 0px #000;margin-top:10px;width:90%;margin-bottom:40px;">
+        <h3>VSTS Board</h3>
+        <div class="dashboard-column" style="width:30%">
+            <div class="card card-outline-primary mb-3" data="rodWorkItems" droppable [dragOverClass]="'drag-target-border-green'" [dropScope]="['Ready for Development', 'Development', 'Ready for Approval']"
+                [dragHintClass]="'drag-hint'" (onDrop)="onDropItem($event)">
+                <div class="card-header card-inverse card-primary" style="font-weight:bold;">READY FOR DEVELOPMENT</div>
+                <li style="border:1px solid #ddd !important;background:#fff !important;border-radius: 5px !important;" class="list-group-item list-group-item-action list-group-item-success" [draggable] *ngFor="let item of rodWorkItems" [dragClass]="'active'"
+                    [dragData]="item" [dragScope]="item.type" [dragEnabled]="dragEnabled" (onDrop)="onDropItem($event)">
+                  <span class='title-id' (click)= "titleClicked(item);">{{item.id}} : {{item.title}}</span> 
+                   <div class='assignee'>
+                        {{item.assignee}}
+                   </div>
+                   <div class="points" *ngIf="item.points">{{item.points}}</div>
+                </li>
+            </div>
+        </div>
+    
+        <div class="dashboard-column" style="width:30%">
+            <div class="card card-outline-primary mb-3" data="developmentWorkItems" droppable [dragOverClass]="'drag-target-border-green'" [dropScope]="['Ready for Development', 'Development', 'Ready for Approval']"
+                [dragHintClass]="'drag-hint'" (onDrop)="onDropItem($event)">
+                <div class="card-header card-inverse card-primary" style="font-weight:bold;">DEVELOPMENT</div>
+                <li style="border:1px solid #ddd !important;background:#fff !important;border-radius: 5px !important;" class="list-group-item list-group-item-action list-group-item-success" [draggable] *ngFor="let item of developmentWorkItems" [dragClass]="'active'"
                     [dragData]="item" [dragScope]="item.type" [dragEnabled]="dragEnabled" (onDrop)="onDropItem($event)">
                     <span class='title-id' (click)= "titleClicked(item);">{{item.id}} : {{item.title}}</span> 
                     <div class='assignee'>
@@ -45,5 +46,24 @@
                 </li>
             </div>
         </div>
+    
+        <div class="dashboard-column" style="width:30%">
+            <div class="card card-outline-primary mb-3" data="roaWorkItems" droppable [dragOverClass]="'drag-target-border-green'" [dropScope]="['Ready for Development', 'Development', 'Ready for Approval']"
+                [dragHintClass]="'drag-hint'" (onDrop)="onDropItem($event)">
+                <div class="card-header card-inverse card-primary" style="font-weight:bold;">READY FOR APPROVAL</div>
+                <div class="card-block scroll-list">
+                    <li style="border:1px solid #ddd !important;background:#fff !important;border-radius: 5px !important;" class="list-group-item list-group-item-action list-group-item-success" [draggable] *ngFor="let item of roaWorkItems" [dragClass]="'active'"
+                        [dragData]="item" [dragScope]="item.type" [dragEnabled]="dragEnabled" (onDrop)="onDropItem($event)">
+                        <span class='title-id' (click)= "titleClicked(item);">{{item.id}} : {{item.title}}</span> 
+                        <div class='assignee'>
+                            {{item.assignee}}
+                        </div>
+                        <div class="points" *ngIf="item.points">{{item.points}}</div>
+                    </li>
+                </div>
+            </div>
+        </div>
     </div>
+<div class="footer">
+    © 2018 Finastra. All rights reserved. <a>Terms & Conditions | Legal</a>
 </div>

@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
     fruitDropEnabled = true;
     dragEnabled = true;
     workItems: any = {};
+    loading: boolean = false;
     constructor(
         private dashboardService: DashboardService,
         private router: Router
@@ -25,9 +26,11 @@ export class DashboardComponent implements OnInit {
         { }
 
     ngOnInit() {
+        this.loading = true;
         this.dashboardService.getWorkItems().subscribe(res => {
             console.log(res);
             res.value.map(it => {
+                this.loading = false;
                 it.type = it.fields["System.BoardColumn"];
                 it.title = it.fields['System.Title'];
                 it.assignee = it.fields['System.AssignedTo'];
